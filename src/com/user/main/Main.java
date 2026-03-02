@@ -4,8 +4,6 @@ import com.user.auth.*;
 import com.user.manage.contact.*;
 import com.user.management.*;
 import com.user.view.*;
-import com.user.management.UserRepository;
-import com.user.management.UserService;
 
 public class Main {
 
