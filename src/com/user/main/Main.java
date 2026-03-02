@@ -10,19 +10,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        PersonContact contact = new PersonContact("Rithvik");
+        ContactRepository repo = new ContactRepository();
 
-        CommandManager manager = new CommandManager();
+        PersonContact contact = new PersonContact("Rishab");
+        repo.save(contact);
 
-        UpdateNameCommand cmd = new UpdateNameCommand(contact, "Rithvik Kashyap");
+        contact.softDelete();
+        System.out.println("Soft Deleted: " + contact.isDeleted());
 
-        manager.execute(cmd);
-        System.out.println("After Update: " + contact.getName());
-
-        manager.undo();
-        System.out.println("After Undo: " + contact.getName());
-
-        manager.redo();
-        System.out.println("After Redo: " + contact.getName());
+        repo.hardDelete(contact.getId());
+        System.out.println("Hard Delete Completed");
     }
 }
