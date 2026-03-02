@@ -6,22 +6,23 @@ import com.user.manage.contact.*;
 import com.user.management.*;
 import com.user.view.*;
 import com.user.specifications.*;
+import com.user.stratergy.*;
 import java.util.List;
+
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        List<PersonContact> contacts = List.of(
-                new PersonContact("Alice"),
-                new PersonContact("Bob"),
-                new PersonContact("Alicia")
-        );
+        List<PersonContact> contacts = new ArrayList<>();
 
-        NameSpecification spec = new NameSpecification("ali");
+        contacts.add(new PersonContact("Rishab"));
+        contacts.add(new PersonContact("Rithvik"));
+        contacts.add(new PersonContact("Ghoose"));
 
-        contacts.stream()
-                .filter(spec::isSatisfiedBy)
-                .forEach(c -> System.out.println("Matched: " + c.getName()));
+        contacts.sort(new SortByNameStrategy());
+
+        contacts.forEach(c -> System.out.println(c.getName()));
     }
 }
