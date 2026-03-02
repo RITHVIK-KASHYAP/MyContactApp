@@ -1,6 +1,7 @@
 package com.user.main;
 
 import com.user.auth.*;
+import com.user.manage.contact.*;
 import com.user.management.*;
 
 import com.user.management.UserRepository;
@@ -10,20 +11,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        UserRepository repo = new UserRepository();
-        UserService userService = new UserService(repo);
-        ProfileService profileService = new ProfileService();
+        PersonContact contact = new PersonContact("Rishab");
 
-        User user = userService.register(
-                "rithvik@7-11.com",
-                "pass123",
-                "Rithvik",
-                "FREE"
-        );
+        contact.addPhone(new PhoneNumber("9876543210"));
+        contact.addEmail(new EmailAddress("Rishab@example.com"));
 
-        profileService.changePassword(user, "NewPass456");
-        profileService.updateEmail(user, "rithvik.new@7-11.com");
-
-        System.out.println("Updated Email: " + user.getEmail());
+        System.out.println("Contact Created:");
+        System.out.println("Name: " + contact.getName());
+        System.out.println("Type: " + contact.getType());
     }
 }
