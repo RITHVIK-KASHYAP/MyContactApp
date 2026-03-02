@@ -5,21 +5,23 @@ import com.user.command.manager.*;
 import com.user.manage.contact.*;
 import com.user.management.*;
 import com.user.view.*;
+import com.user.specifications.*;
+import java.util.List;
 
-public class Main{
+public class Main {
 
     public static void main(String[] args) {
 
-        ContactGroup group = new ContactGroup("Friends");
+        List<PersonContact> contacts = List.of(
+                new PersonContact("Alice"),
+                new PersonContact("Bob"),
+                new PersonContact("Alicia")
+        );
 
-        PersonContact c1 = new PersonContact("Rithvik");
-        PersonContact c2 = new PersonContact("Rishab");
+        NameSpecification spec = new NameSpecification("ali");
 
-        group.add(c1);
-        group.add(c2);
-
-        group.deleteAll();
-
-        System.out.println("Bulk Soft Delete Applied");
+        contacts.stream()
+                .filter(spec::isSatisfiedBy)
+                .forEach(c -> System.out.println("Matched: " + c.getName()));
     }
 }
