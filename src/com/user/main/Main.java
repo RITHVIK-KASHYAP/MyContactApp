@@ -3,7 +3,7 @@ package com.user.main;
 import com.user.auth.*;
 import com.user.manage.contact.*;
 import com.user.management.*;
-
+import com.user.view.*;
 import com.user.management.UserRepository;
 import com.user.management.UserService;
 
@@ -11,13 +11,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        PersonContact contact = new PersonContact("Rishab");
+        PersonContact contact = new PersonContact("Rithvik");
+        contact.addEmail(new EmailAddress("Rithvik@example.com"));
 
-        contact.addPhone(new PhoneNumber("9876543210"));
-        contact.addEmail(new EmailAddress("Rishab@example.com"));
+        ContactView view = new BasicContactView();
+        view = new MaskEmailDecorator(view);
+        view = new UpperCaseDecorator(view);
 
-        System.out.println("Contact Created:");
-        System.out.println("Name: " + contact.getName());
-        System.out.println("Type: " + contact.getType());
+        System.out.println(view.display(contact));
     }
 }
