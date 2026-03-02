@@ -13,3 +13,4 @@ public class UpperCaseDecorator extends ContactViewDecorator {
         return wrapped.display(contact).toUpperCase();
     }
 }
+
