@@ -1,6 +1,6 @@
 package com.user.management;
 
-public class UC01_UserRegistration {
+public class Main {
 
     public static void main(String[] args) {
 
@@ -8,9 +8,9 @@ public class UC01_UserRegistration {
         UserService service = new UserService(repository);
 
         User user = service.register(
-                "john@example.com",
+                "Rithvik@7-11.com",
                 "SecurePass123",
-                "John Doe",
+                "Rithvik K",
                 "FREE"
         );
 
