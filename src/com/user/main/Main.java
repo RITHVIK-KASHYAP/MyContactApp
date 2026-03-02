@@ -1,6 +1,7 @@
 package com.user.main;
 
 import com.user.auth.*;
+import com.user.command.manager.*;
 import com.user.manage.contact.*;
 import com.user.management.*;
 import com.user.view.*;
@@ -10,12 +11,18 @@ public class Main {
     public static void main(String[] args) {
 
         PersonContact contact = new PersonContact("Rithvik");
-        contact.addEmail(new EmailAddress("Rithvik@example.com"));
 
-        ContactView view = new BasicContactView();
-        view = new MaskEmailDecorator(view);
-        view = new UpperCaseDecorator(view);
+        CommandManager manager = new CommandManager();
 
-        System.out.println(view.display(contact));
+        UpdateNameCommand cmd = new UpdateNameCommand(contact, "Rithvik Kashyap");
+
+        manager.execute(cmd);
+        System.out.println("After Update: " + contact.getName());
+
+        manager.undo();
+        System.out.println("After Undo: " + contact.getName());
+
+        manager.redo();
+        System.out.println("After Redo: " + contact.getName());
     }
 }
