@@ -6,19 +6,20 @@ import com.user.manage.contact.*;
 import com.user.management.*;
 import com.user.view.*;
 
-public class Main {
+public class Main{
 
     public static void main(String[] args) {
 
-        ContactRepository repo = new ContactRepository();
+        ContactGroup group = new ContactGroup("Friends");
 
-        PersonContact contact = new PersonContact("Rishab");
-        repo.save(contact);
+        PersonContact c1 = new PersonContact("Rithvik");
+        PersonContact c2 = new PersonContact("Rishab");
 
-        contact.softDelete();
-        System.out.println("Soft Deleted: " + contact.isDeleted());
+        group.add(c1);
+        group.add(c2);
 
-        repo.hardDelete(contact.getId());
-        System.out.println("Hard Delete Completed");
+        group.deleteAll();
+
+        System.out.println("Bulk Soft Delete Applied");
     }
 }
