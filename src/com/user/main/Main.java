@@ -5,24 +5,25 @@ import com.user.command.manager.*;
 import com.user.manage.contact.*;
 import com.user.management.*;
 import com.user.view.*;
+
+import Tags.*;
+
 import com.user.specifications.*;
 import com.user.stratergy.*;
 import java.util.List;
 
 import java.util.*;
 
+
 public class Main {
 
     public static void main(String[] args) {
 
-        List<PersonContact> contacts = new ArrayList<>();
+        Tag tag1 = new Tag("Family");
+        Tag tag2 = new Tag("Work");
 
-        contacts.add(new PersonContact("Rishab"));
-        contacts.add(new PersonContact("Rithvik"));
-        contacts.add(new PersonContact("Ghoose"));
-
-        contacts.sort(new SortByNameStrategy());
-
-        contacts.forEach(c -> System.out.println(c.getName()));
+        System.out.println("Created Tags:");
+        System.out.println(tag1.getName());
+        System.out.println(tag2.getName());
     }
 }
