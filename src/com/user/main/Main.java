@@ -11,20 +11,19 @@ public class Main {
     public static void main(String[] args) {
 
         UserRepository repo = new UserRepository();
-        UserService service = new UserService(repo);
+        UserService userService = new UserService(repo);
+        ProfileService profileService = new ProfileService();
 
-        service.register("rithvik@7-11.com", "pass123", "Rithvik", "FREE");
+        User user = userService.register(
+                "rithvik@7-11.com",
+                "pass123",
+                "Rithvik",
+                "FREE"
+        );
 
-        AuthenticationService auth1 = new BasicAuthService(repo);
-        SessionManager session = new SessionManager();
+        profileService.changePassword(user, "NewPass456");
+        profileService.updateEmail(user, "rithvik.new@7-11.com");
 
-        auth1.login("rithvik@7-11.com", "pass123")
-                .ifPresentOrElse(
-                        user -> {
-                            session.createSession(user);
-                            System.out.println("Login Successful");
-                        },
-                        () -> System.out.println("Invalid Credentials")
-                );
+        System.out.println("Updated Email: " + user.getEmail());
     }
 }
